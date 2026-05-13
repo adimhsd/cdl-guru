@@ -1,0 +1,54 @@
+# Konfigurasi Docker Compose untuk deploy Next.js + PostgreSQL + Cloudflare Tunnel
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: cdl_postgres
+    restart: always
+    environment:
+      # Menggunakan placeholder agar password diset via .env di VPS
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password123}
+      POSTGRES_DB: ${POSTGRES_DB:-cdl_platform}
+    volumes:
+      # Menyimpan data database secara permanen di host agar tidak hilang saat container direstart
+      - postgres_data:/var/lib/postgresql/data
+    # Expose port agar bisa diakses dari host (opsional untuk remote database management)
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cdl_app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      # Koneksi database menggunakan format yang bisa mengakses service 'db' dari dalam jaringan docker
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-password123}@db:5432/${POSTGRES_DB:-cdl_platform}?schema=public
+      - NEXTAUTH_URL=https://cdl.adi-muhamad.my.id
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    # Expose port ke host hanya untuk localhost. Traffic dari internet akan diurus oleh cloudflared
+    ports:
+      - "3000:3000"
+
+  # Service untuk Cloudflare Tunnel
+  # Anda hanya perlu menjalankan tunnel ini dengan token yang didapatkan dari dashboard Cloudflare Zero Trust
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cdl_tunnel
+    restart: always
+    command: tunnel --no-autoupdate run
+    environment:
+      # Token Cloudflare Tunnel disuplai dari .env di VPS
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - app
+
+volumes:
+  # Volume untuk persistensi data database
+  postgres_data:

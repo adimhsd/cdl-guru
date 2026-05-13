@@ -1,0 +1,14 @@
+# Mengabaikan file dan folder yang tidak perlu masuk ke dalam Docker image
+Dockerfile
+.dockerignore
+docker-compose.yml
+node_modules
+npm-debug.log
+README.md
+.next
+.git
+.env*
+.vercel
+*.pem
+prisma/*.db
+prisma/*.db-journal
