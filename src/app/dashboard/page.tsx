@@ -30,6 +30,9 @@ export default async function DashboardPage() {
   const session = await auth();
   if (!session?.user?.id) redirect("/login");
 
+  const userRole = (session.user as any).role;
+  if (userRole === "ADMIN") redirect("/admin");
+
   const userId = session.user.id;
 
   const [user, preTest, postTest, interactionCount] = await Promise.all([
