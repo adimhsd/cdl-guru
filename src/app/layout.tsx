@@ -17,6 +17,19 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CDL Platform — Critical Digital Literacy",
   description: "Platform riset literasi digital kritis untuk guru",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "CDL Guru",
+  },
+  icons: {
+    apple: "/cdl-guru-logo.jpg",
+  },
+};
+
+export const viewport = {
+  themeColor: "#2563eb",
 };
 
 export default function RootLayout({
