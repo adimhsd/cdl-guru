@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "CDL Guru",
   },
   icons: {
-    apple: "/cdl-guru-logo.jpg",
+    apple: "/icon-192.png",
   },
 };
 

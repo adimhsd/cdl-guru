@@ -1,16 +1,25 @@
 {
+  "id": "cdl-guru-platform",
   "name": "CDL Guru Platform",
   "short_name": "CDL Guru",
   "description": "Platform Adaptif Literasi Digital Kritis untuk Guru",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#2563eb",
   "icons": [
     {
-      "src": "/cdl-guru-logo.jpg",
-      "sizes": "192x192 512x512",
-      "type": "image/jpeg"
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
