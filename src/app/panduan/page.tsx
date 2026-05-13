@@ -11,17 +11,9 @@ export default function PanduanPage() {
       <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
         <div className="p-5 md:p-12">
           {/* Header */}
-          <div className="flex justify-between items-center mb-6 md:mb-8 border-b border-slate-100 pb-6 md:pb-8 flex-wrap gap-4">
-            <div>
-              <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Dokumentasi Sistem</h1>
-              <p className="text-slate-500 mt-2">Sistem AI-Based Adaptive Learning untuk Critical Digital Literacy (CDL)</p>
-            </div>
-            <Link 
-              href="/login" 
-              className="inline-flex justify-center items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md shadow-blue-200 whitespace-nowrap"
-            >
-              Kembali ke Login
-            </Link>
+          <div className="mb-6 md:mb-8 border-b border-slate-100 pb-6 md:pb-8">
+            <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Dokumentasi Sistem</h1>
+            <p className="text-slate-500 mt-2">Sistem AI-Based Adaptive Learning untuk Critical Digital Literacy (CDL)</p>
           </div>
 
           {/* Content */}
