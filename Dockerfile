@@ -1,57 +1,68 @@
-# Menggunakan Node.js versi 18 Alpine yang ringan sebagai base image
-FROM node:18-alpine AS base
-
-# Install dependencies yang dibutuhkan oleh beberapa module Node.js
+# Stage 1: Base image
+FROM node:20-alpine AS base
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Tahap 1: Install semua dependencies
+# Stage 2: Install dependencies
 FROM base AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-# Gunakan ci untuk instalasi yang clean berdasarkan package-lock.json
 RUN npm ci
 
-# Tahap 2: Build aplikasi
+# Stage 3: Build aplikasi
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Generate Prisma client agar bisa digunakan saat build & runtime
-RUN npx prisma generate
+# Generate Prisma client
+RUN DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder" npx prisma generate
 
-# PENTING: Pastikan next.config.mjs atau next.config.js Anda memiliki "output: 'standalone'"
+ARG OPENAI_API_KEY
+ENV OPENAI_API_KEY=$OPENAI_API_KEY
+ARG NEXTAUTH_SECRET
+ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+
 RUN npm run build
 
-# Tahap 3: Production image
+# Stage 4: Production image
 FROM base AS runner
 WORKDIR /app
 
-# Atur environment menjadi production
 ENV NODE_ENV production
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-# Membuat user non-root untuk keamanan
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Set folder public jika ada (untuk aset statis)
+# Next.js static files
 COPY --from=builder /app/public ./public
-
-# Salin output standalone dan static dari builder
-# Jika terjadi error saat build, pastikan Anda menambahkan `output: "standalone"` di next.config.js/mjs
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Setup folder prisma jika diperlukan pada runtime (walau query biasa pakai schema hasil generate)
-# COPY --from=builder /app/prisma ./prisma
+# --- Prisma files untuk migrate & seed ---
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+COPY --from=builder --chown=nextjs:nodejs /app/prisma.config.ts ./prisma.config.ts
+COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./tsconfig.json
+COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.seed.json ./tsconfig.seed.json
 
-# Switch ke non-root user
+# Prisma CLI & client
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/prisma ./node_modules/prisma
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
+
+# ts-node & TypeScript untuk prisma db seed
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/ts-node ./node_modules/ts-node
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/typescript ./node_modules/typescript
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.bin/ts-node ./node_modules/.bin/ts-node
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/bcryptjs ./node_modules/bcryptjs
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@types ./node_modules/@types
+
 USER nextjs
-
 EXPOSE 3000
-
-# Perintah start untuk standalone build
 CMD ["node", "server.js"]
