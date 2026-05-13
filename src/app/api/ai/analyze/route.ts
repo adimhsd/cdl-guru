@@ -4,9 +4,15 @@ import { prisma } from '@/lib/prisma'
 import { SYSTEM_PROMPT, LEVEL_PROMPTS } from '@/lib/ai-prompts'
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+export const dynamic = 'force-dynamic'
+
+let openaiInstance: OpenAI | null = null
+function getOpenAI() {
+  if (!openaiInstance) {
+    openaiInstance = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  }
+  return openaiInstance
+}
 
 function countWords(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length
@@ -70,7 +76,7 @@ export async function POST(req: Request) {
     ]
 
     // ── Streaming ──────────────────────────────────────────────────────
-    const stream = await openai.chat.completions.create({
+    const stream = await getOpenAI().chat.completions.create({
       model: process.env.OPENAI_MODEL ?? 'gpt-4o-mini',
       messages,
       temperature: 0.7,
