@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -107,6 +108,18 @@ export default function LoginForm() {
           "Masuk Ke Platform"
         )}
       </button>
+
+      <div className="pt-4 mt-6 border-t border-slate-100 text-center space-y-2">
+        <p className="text-xs font-medium text-slate-500">
+          Calon pengguna diwajibkan membaca dokumentasi sistem sebelum login.
+        </p>
+        <Link 
+          href="/panduan" 
+          className="inline-block text-sm font-bold text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+        >
+          📖 Baca Panduan & Informasi Sistem
+        </Link>
+      </div>
     </form>
   );
 }
