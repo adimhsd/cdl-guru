@@ -206,10 +206,9 @@ export default function AIChatClient({ user, initialInteractionCount }: { user: 
               ref={textareaRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
               placeholder="Tulis pesan Anda di sini..."
               rows={1}
-              className="flex-1 resize-none border border-slate-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-white shadow-inner"
+              className="flex-1 resize-none border border-slate-200 rounded-2xl px-5 py-3.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-white shadow-inner"
             />
             <button
               onClick={handleSend}
@@ -219,7 +218,7 @@ export default function AIChatClient({ user, initialInteractionCount }: { user: 
               <svg className="w-6 h-6 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
             </button>
           </div>
-          <p className="text-[10px] text-slate-400 mt-3 text-center font-medium">Maksimal 500 kata per pesan • Tekan Enter untuk mengirim</p>
+          <p className="text-[10px] text-slate-400 mt-3 text-center font-medium">Maksimal 500 kata per pesan</p>
         </div>
       </div>
 
