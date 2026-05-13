@@ -7,6 +7,9 @@ export default async function AIPage() {
   const session = await auth();
   if (!session?.user?.id) redirect("/login");
 
+  const userRole = (session.user as any).role;
+  if (userRole === "ADMIN") redirect("/admin");
+
   const userId = session.user.id;
 
   // Guard: Must complete pre-test first
