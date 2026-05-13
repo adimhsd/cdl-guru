@@ -35,10 +35,10 @@ function StatusBadge({ user }: { user: User }) {
 
 function StatCard({ label, value, sub, color }: { label: string; value: string | number; sub?: string; color: string }) {
   return (
-    <div className={`rounded-2xl border p-5 ${color}`}>
-      <p className="text-xs font-bold uppercase tracking-wider opacity-70 mb-1">{label}</p>
-      <p className="text-3xl font-black">{value}</p>
-      {sub && <p className="text-xs mt-1 opacity-60 font-medium">{sub}</p>}
+    <div className={`rounded-2xl border p-4 md:p-5 flex flex-col justify-between ${color}`}>
+      <p className="text-[10px] md:text-xs font-bold uppercase tracking-wider opacity-70 mb-1">{label}</p>
+      <p className="text-2xl md:text-3xl font-black">{value}</p>
+      {sub && <p className="text-[10px] md:text-xs mt-1 opacity-60 font-medium">{sub}</p>}
     </div>
   );
 }
@@ -126,41 +126,41 @@ function UserDetailPanel({ user, onClose }: { user: User; onClose: () => void })
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
-        <div className="flex items-center justify-between px-7 py-5 border-b border-slate-100">
+      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[95vh] md:max-h-[90vh] flex flex-col overflow-hidden">
+        <div className="flex items-center justify-between px-4 md:px-7 py-4 md:py-5 border-b border-slate-100">
           <div>
-            <h2 className="text-lg font-black text-slate-800">{user.name}</h2>
-            <p className="text-sm text-slate-500">{user.email}</p>
+            <h2 className="text-base md:text-lg font-black text-slate-800">{user.name}</h2>
+            <p className="text-xs md:text-sm text-slate-500">{user.email}</p>
           </div>
-          <button onClick={onClose} className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors">✕</button>
+          <button onClick={onClose} className="w-8 h-8 md:w-9 md:h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors">✕</button>
         </div>
 
-        <div className="flex items-center justify-between px-7 pt-4">
-          <div className="flex gap-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between px-4 md:px-7 pt-3 md:pt-4 gap-3">
+          <div className="flex flex-wrap gap-1">
             {(["test", "ai"] as const).map(t => (
               <button key={t} onClick={() => setTab(t)}
-                className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${tab === t ? "bg-blue-600 text-white shadow" : "text-slate-500 hover:bg-slate-100"}`}>
-                {t === "test" ? "📊 Hasil Tes & Confidence" : `💬 Riwayat AI (${user.interactions.length})`}
+                className={`px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-sm font-bold transition-all ${tab === t ? "bg-blue-600 text-white shadow" : "text-slate-500 hover:bg-slate-100"}`}>
+                {t === "test" ? "📊 Hasil Tes & Conf." : `💬 Riwayat AI (${user.interactions.length})`}
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 self-end sm:self-auto">
             {tab === "test" && (user.preTest || user.postTest) && (
-              <button onClick={downloadCSV} className="px-4 py-2 bg-slate-800 text-white text-sm font-bold rounded-xl hover:bg-slate-700 transition-colors flex items-center gap-2 shadow-sm">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                Download CSV
+              <button onClick={downloadCSV} className="px-3 py-1.5 md:px-4 md:py-2 bg-slate-800 text-white text-xs md:text-sm font-bold rounded-xl hover:bg-slate-700 transition-colors flex items-center gap-1.5 md:gap-2 shadow-sm">
+                <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                CSV
               </button>
             )}
             {tab === "ai" && user.interactions.length > 0 && (
-              <button onClick={downloadJSON} className="px-4 py-2 bg-slate-800 text-white text-sm font-bold rounded-xl hover:bg-slate-700 transition-colors flex items-center gap-2 shadow-sm">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                Download JSON
+              <button onClick={downloadJSON} className="px-3 py-1.5 md:px-4 md:py-2 bg-slate-800 text-white text-xs md:text-sm font-bold rounded-xl hover:bg-slate-700 transition-colors flex items-center gap-1.5 md:gap-2 shadow-sm">
+                <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                JSON
               </button>
             )}
           </div>
         </div>
 
-        <div className="overflow-y-auto flex-1 p-7">
+        <div className="overflow-y-auto flex-1 p-4 md:p-7">
           {tab === "test" && (
             <div className="space-y-6">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -204,10 +204,10 @@ function UserDetailPanel({ user, onClose }: { user: User; onClose: () => void })
                     <p className="text-sm font-bold text-slate-700 mb-3 text-center">Jawaban Pre-Test</p>
                     <div className="grid grid-cols-1 gap-2">
                       {user.preTest.answers.map(a => (
-                        <div key={a.questionId} className={`flex items-center justify-between px-4 py-2 rounded-xl border text-sm ${a.isCorrect ? "bg-emerald-50 border-emerald-100" : "bg-red-50 border-red-100"}`}>
-                          <span className="font-medium text-slate-700">Soal {a.questionId}</span>
-                          <span className={`font-bold ${a.isCorrect ? "text-emerald-600" : "text-red-600"}`}>{a.isCorrect ? "✓ Benar" : "✗ Salah"}</span>
-                          <span className="text-slate-500">Conf: <strong>{a.confidenceScore}</strong>/5</span>
+                        <div key={a.questionId} className={`flex items-center justify-between px-3 md:px-4 py-2 rounded-xl border text-[10px] md:text-sm ${a.isCorrect ? "bg-emerald-50 border-emerald-100" : "bg-red-50 border-red-100"}`}>
+                          <span className="font-medium text-slate-700 w-12 md:w-auto">Soal {a.questionId}</span>
+                          <span className={`font-bold flex-1 text-center md:text-left ${a.isCorrect ? "text-emerald-600" : "text-red-600"}`}>{a.isCorrect ? "✓ Benar" : "✗ Salah"}</span>
+                          <span className="text-slate-500 text-right">Conf: <strong>{a.confidenceScore}</strong>/5</span>
                         </div>
                       ))}
                     </div>
@@ -218,10 +218,10 @@ function UserDetailPanel({ user, onClose }: { user: User; onClose: () => void })
                     <p className="text-sm font-bold text-slate-700 mb-3 text-center">Jawaban Post-Test</p>
                     <div className="grid grid-cols-1 gap-2">
                       {user.postTest.answers.map(a => (
-                        <div key={a.questionId} className={`flex items-center justify-between px-4 py-2 rounded-xl border text-sm ${a.isCorrect ? "bg-emerald-50 border-emerald-100" : "bg-red-50 border-red-100"}`}>
-                          <span className="font-medium text-slate-700">Soal {a.questionId}</span>
-                          <span className={`font-bold ${a.isCorrect ? "text-emerald-600" : "text-red-600"}`}>{a.isCorrect ? "✓ Benar" : "✗ Salah"}</span>
-                          <span className="text-slate-500">Conf: <strong>{a.confidenceScore}</strong>/5</span>
+                        <div key={a.questionId} className={`flex items-center justify-between px-3 md:px-4 py-2 rounded-xl border text-[10px] md:text-sm ${a.isCorrect ? "bg-emerald-50 border-emerald-100" : "bg-red-50 border-red-100"}`}>
+                          <span className="font-medium text-slate-700 w-12 md:w-auto">Soal {a.questionId}</span>
+                          <span className={`font-bold flex-1 text-center md:text-left ${a.isCorrect ? "text-emerald-600" : "text-red-600"}`}>{a.isCorrect ? "✓ Benar" : "✗ Salah"}</span>
+                          <span className="text-slate-500 text-right">Conf: <strong>{a.confidenceScore}</strong>/5</span>
                         </div>
                       ))}
                     </div>
@@ -326,10 +326,10 @@ export default function AdminDashboardClient({ stats, users, adminName }: { stat
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-4 py-8 space-y-8">
+      <main className="max-w-7xl mx-auto px-4 py-6 md:py-8 space-y-6 md:space-y-8">
         <div>
-          <h1 className="text-3xl font-black text-slate-800">Dashboard Penelitian</h1>
-          <p className="text-slate-500 mt-1">Monitoring data seluruh peserta CDL Guru Platform</p>
+          <h1 className="text-2xl md:text-3xl font-black text-slate-800">Dashboard Penelitian</h1>
+          <p className="text-xs md:text-sm text-slate-500 mt-1">Monitoring data seluruh peserta CDL Guru Platform</p>
         </div>
 
         {/* Stat Cards */}
@@ -402,8 +402,8 @@ export default function AdminDashboardClient({ stats, users, adminName }: { stat
 
           <p className="text-xs text-slate-400 font-medium mb-3">Menampilkan {filtered.length} dari {users.length} peserta</p>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+          <div className="overflow-x-auto pb-4">
+            <table className="w-full text-xs md:text-sm min-w-[700px]">
               <thead>
                 <tr className="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
                   <th className="text-left pb-3 pr-4">Peserta</th>
