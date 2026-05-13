@@ -45,11 +45,12 @@ async function main() {
   // Seed Admin
   await prisma.user.upsert({
     where: { email: 'admin@mail.com' },
-    update: { name: 'Administrator' },
+    update: { name: 'Administrator', role: 'ADMIN' },
     create: {
       email: 'admin@mail.com',
       name: 'Administrator',
       password: adminPassword,
+      role: 'ADMIN',
     },
   })
 
