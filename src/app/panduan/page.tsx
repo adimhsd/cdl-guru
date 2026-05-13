@@ -7,13 +7,13 @@ export const metadata = {
 
 export default function PanduanPage() {
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 py-6 md:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
-        <div className="p-8 sm:p-12">
+        <div className="p-5 md:p-12">
           {/* Header */}
-          <div className="flex justify-between items-center mb-8 border-b border-slate-100 pb-8 flex-wrap gap-4">
+          <div className="flex justify-between items-center mb-6 md:mb-8 border-b border-slate-100 pb-6 md:pb-8 flex-wrap gap-4">
             <div>
-              <h1 className="text-3xl font-black text-slate-900 tracking-tight">Dokumentasi Sistem</h1>
+              <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Dokumentasi Sistem</h1>
               <p className="text-slate-500 mt-2">Sistem AI-Based Adaptive Learning untuk Critical Digital Literacy (CDL)</p>
             </div>
             <Link 
@@ -25,10 +25,10 @@ export default function PanduanPage() {
           </div>
 
           {/* Content */}
-          <div className="space-y-8 text-slate-700 leading-relaxed">
+          <div className="space-y-5 md:space-y-8 text-sm md:text-base text-slate-700 leading-snug md:leading-relaxed">
             
             <section>
-              <h2 className="text-2xl font-black text-slate-900 mb-3">1. Latar Belakang</h2>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-2 md:mb-3">1. Latar Belakang</h2>
               <p>Perkembangan informasi digital yang sangat cepat menyebabkan meningkatnya risiko bias informasi, misinformasi, dan disinformasi dalam dunia pendidikan. Guru sebagai fasilitator pembelajaran dituntut memiliki kemampuan Critical Digital Literacy (CDL), yaitu kemampuan untuk memahami, mengevaluasi, dan mengkritisi informasi secara mandiri.</p>
               <p className="mt-3">Saat ini belum tersedia sistem yang secara adaptif membantu guru dalam:</p>
               <ul className="list-disc pl-6 mt-2 space-y-1">
@@ -40,7 +40,7 @@ export default function PanduanPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-slate-900 mb-3">2. Tujuan Aplikasi</h2>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-2 md:mb-3">2. Tujuan Aplikasi</h2>
               <p>Membangun platform berbasis web yang dapat:</p>
               <ol className="list-decimal pl-6 mt-2 space-y-1">
                 <li>Mengukur kemampuan awal CDL guru (pre-test)</li>
@@ -52,7 +52,7 @@ export default function PanduanPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-slate-900 mb-3">3. Ruang Lingkup Aplikasi</h2>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-2 md:mb-3">3. Ruang Lingkup Aplikasi</h2>
               <p>Aplikasi ini berupa aplikasi web yang terdiri dari:</p>
               <ul className="list-disc pl-6 mt-2 space-y-1">
                 <li>Sistem autentikasi pengguna (guru)</li>
@@ -65,7 +65,7 @@ export default function PanduanPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-slate-900 mb-3">4. Target Pengguna</h2>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-2 md:mb-3">4. Target Pengguna</h2>
               <h3 className="font-bold text-slate-900 mt-3">Pengguna utama:</h3>
               <ul className="list-disc pl-6 mt-1">
                 <li>Guru (SD/SMP/SMA)</li>
@@ -79,7 +79,7 @@ export default function PanduanPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-slate-900 mb-3">5. Masalah yang Ingin Diselesaikan</h2>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-2 md:mb-3">5. Masalah yang Ingin Diselesaikan</h2>
               <ol className="list-decimal pl-6 mt-2 space-y-1">
                 <li>Guru kesulitan membedakan informasi bias dan tidak bias</li>
                 <li>Kurangnya kemampuan evaluasi sumber informasi</li>
@@ -89,7 +89,7 @@ export default function PanduanPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-slate-900 mb-3">6. Solusi yang Ditawarkan</h2>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-2 md:mb-3">6. Solusi yang Ditawarkan</h2>
               <p>Sistem AI yang:</p>
               <ul className="list-disc pl-6 mt-2 space-y-1">
                 <li>Menganalisis teks yang diberikan pengguna</li>
@@ -101,7 +101,7 @@ export default function PanduanPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-slate-900 mb-4 border-b border-slate-100 pb-2">7. Fitur Utama</h2>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-3 md:mb-4 border-b border-slate-100 pb-2">7. Fitur Utama</h2>
               
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="bg-slate-50 p-5 rounded-2xl">
@@ -148,11 +148,11 @@ export default function PanduanPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-slate-900 mb-3">8. User Flow</h2>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-2 md:mb-3">8. User Flow</h2>
               <div className="flex flex-wrap gap-2 mt-3">
                 {['Login', 'Pre-Test', 'Sistem AI', 'Min. 10 Interaksi', 'Post-Test', 'Dashboard Hasil'].map((step, i) => (
                   <div key={i} className="flex items-center">
-                    <span className="bg-blue-100 text-blue-800 font-bold px-3 py-1 rounded-full text-sm">
+                    <span className="bg-blue-100 text-blue-800 font-bold px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm">
                       {i + 1}. {step}
                     </span>
                     {i < 5 && <span className="mx-2 text-slate-400">→</span>}
@@ -162,15 +162,15 @@ export default function PanduanPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-slate-900 mb-3">9. Data & Metrik</h2>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-2 md:mb-3">9. Data & Metrik</h2>
               <ul className="list-disc pl-6 mt-2 space-y-1">
                 <li><strong>Data Dikumpulkan:</strong> User level, skor, hasil test, interaksi AI, timestamp.</li>
                 <li><strong>Metrik Keberhasilan:</strong> Peningkatan skor CDL, jumlah interaksi, kualitas respon, stabilitas sistem.</li>
               </ul>
             </section>
 
-            <section className="bg-emerald-50 p-6 rounded-2xl border border-emerald-100 text-center">
-              <h2 className="text-xl font-black text-emerald-900 mb-2">Penutup</h2>
+            <section className="bg-emerald-50 p-4 md:p-6 rounded-2xl border border-emerald-100 text-center">
+              <h2 className="text-lg md:text-xl font-black text-emerald-900 mb-2">Penutup</h2>
               <p className="text-emerald-800">Sistem ini dirancang sebagai platform pembelajaran sekaligus alat eksperimen penelitian untuk menguji efektivitas AI dalam meningkatkan kemampuan Critical Digital Literacy guru secara adaptif dan terukur.</p>
             </section>
 
