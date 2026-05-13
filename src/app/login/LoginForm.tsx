@@ -50,8 +50,8 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       {error && (
-        <div className="p-4 bg-red-50 border border-red-100 text-red-600 text-sm font-bold rounded-2xl flex items-center gap-2 animate-in fade-in zoom-in duration-300">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <div className="p-3 md:p-4 bg-red-50 border border-red-100 text-red-600 text-[13px] md:text-sm font-bold rounded-2xl flex items-center gap-2 animate-in fade-in zoom-in duration-300">
+          <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           {error}
         </div>
       )}
@@ -63,7 +63,7 @@ export default function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full px-5 py-4 rounded-2xl border border-slate-100 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium text-slate-800"
+          className="w-full px-4 md:px-5 py-3 md:py-4 rounded-2xl border border-slate-100 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium text-slate-800 text-sm md:text-base"
           placeholder="guru@sekolah.sch.id"
         />
       </div>
@@ -76,7 +76,7 @@ export default function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-5 py-4 pr-12 rounded-2xl border border-slate-100 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium text-slate-800"
+            className="w-full px-4 md:px-5 py-3 md:py-4 pr-12 rounded-2xl border border-slate-100 bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium text-slate-800 text-sm md:text-base"
             placeholder="••••••••"
           />
           <button
@@ -97,7 +97,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full py-4 rounded-2xl bg-blue-600 text-white font-black text-sm hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 disabled:opacity-50 mt-4 flex items-center justify-center gap-2"
+        className="w-full py-3.5 md:py-4 rounded-2xl bg-blue-600 text-white font-black text-xs md:text-sm hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 disabled:opacity-50 mt-2 md:mt-4 flex items-center justify-center gap-2"
       >
         {isLoading ? (
           <>
