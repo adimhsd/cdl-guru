@@ -43,3 +43,19 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# PWA — file yang digenerate saat build (tidak perlu di-commit)
+/public/sw.js
+/public/sw.js.map
+/public/workbox-*.js
+/public/workbox-*.js.map
+/public/fallback-*.js
+/public/fallback-*.js.map
+
+# Icon source (developer harus menyediakannya secara lokal)
+public/icons/icon-source.png
+
+# Setup scripts & file VAPID sementara (mengandung informasi sensitif)
+vapid-keys-for-vps.txt
+setup-vapid-local.ps1
+setup-vps.sh

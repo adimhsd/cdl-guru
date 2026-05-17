@@ -25,6 +25,11 @@ ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET
 ARG DATABASE_URL
 ENV DATABASE_URL=$DATABASE_URL
 
+# CATATAN DEVELOPER (jalankan SEBELUM docker build):
+# 1. Sediakan public/icons/icon-source.png (PNG persegi, min 512x512px)
+# 2. Jalankan: npm run generate-icons
+# 3. Jalankan: npm run generate-vapid → tambahkan output ke .env dan environment VPS
+# Service worker (sw.js) akan digenerate otomatis saat npm run build di bawah.
 RUN npm run build
 
 # Stage 4: Production image

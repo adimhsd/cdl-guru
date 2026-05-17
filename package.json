@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate-icons": "node scripts/generate-icons.js",
+    "generate-vapid": "node scripts/generate-vapid-keys.js"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.2",
@@ -23,7 +25,8 @@
     "react-dom": "19.2.4",
     "recharts": "^3.8.1",
     "sharp": "^0.34.5",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -32,6 +35,7 @@
     "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/web-push": "^3.6.4",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
