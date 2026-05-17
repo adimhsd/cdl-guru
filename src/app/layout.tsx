@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CDL Platform — Critical Digital Literacy",
   description: "Platform riset literasi digital kritis untuk guru",
-  applicationName: "Platinum CDL",
+  applicationName: "CDL Platform",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
