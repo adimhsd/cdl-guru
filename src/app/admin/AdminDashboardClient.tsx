@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { handleSignOut } from "@/lib/actions";
+import PushNotificationSender from "@/components/PushNotificationSender";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   RadarChart, PolarGrid, PolarAngleAxis, Radar, LineChart, Line, Legend,
@@ -371,6 +372,26 @@ export default function AdminDashboardClient({ stats, users, adminName }: { stat
                 <Bar dataKey="Skor" radius={[6, 6, 0, 0]} fill="#3b82f6" />
               </BarChart>
             </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Tindakan Admin */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-1">
+            <PushNotificationSender />
+          </div>
+          <div className="lg:col-span-2">
+            <div className="bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl border border-blue-600 shadow-sm p-6 text-white h-full flex flex-col justify-center relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-10">
+                <svg className="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              </div>
+              <h2 className="text-xl font-black mb-2 relative z-10">Pusat Kendali Riset</h2>
+              <p className="text-blue-100 text-sm relative z-10 max-w-lg mb-4">Gunakan panel di sebelah kiri untuk mengirimkan notifikasi PWA langsung ke perangkat peserta. Notifikasi akan diterima seketika oleh pengguna yang telah mengizinkannya di Dashboard mereka.</p>
+              <div className="flex gap-2 relative z-10">
+                <span className="px-3 py-1 bg-white/20 rounded-lg text-xs font-bold border border-white/30 backdrop-blur-sm">Real-time Push</span>
+                <span className="px-3 py-1 bg-white/20 rounded-lg text-xs font-bold border border-white/30 backdrop-blur-sm">VAPID Secured</span>
+              </div>
+            </div>
           </div>
         </div>
 
