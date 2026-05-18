@@ -73,7 +73,7 @@ export default function PushNotificationSender() {
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Contoh: Pengingat Post-Test!"
             required
-            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-white text-slate-900 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -85,7 +85,7 @@ export default function PushNotificationSender() {
             placeholder="Contoh: Jangan lupa selesaikan Post-Test Anda hari ini untuk mendapatkan sertifikat."
             required
             rows={3}
-            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            className="w-full bg-white text-slate-900 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
           />
         </div>
 
@@ -96,7 +96,7 @@ export default function PushNotificationSender() {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="/dashboard"
-            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-white text-slate-900 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <p className="text-[10px] text-slate-400 mt-1">Halaman yang terbuka ketika notifikasi diklik.</p>
         </div>
