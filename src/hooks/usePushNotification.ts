@@ -55,9 +55,13 @@ export function usePushNotification(): UsePushNotificationReturn {
       setPermissionState(Notification.permission)
 
       try {
-        const registration = await navigator.serviceWorker.ready
-        const existingSubscription = await registration.pushManager.getSubscription()
-        setIsSubscribed(!!existingSubscription)
+        const registration = await navigator.serviceWorker.getRegistration()
+        if (registration) {
+          const existingSubscription = await registration.pushManager.getSubscription()
+          setIsSubscribed(!!existingSubscription)
+        } else {
+          setIsSubscribed(false)
+        }
       } catch (error) {
         console.error('[usePushNotification] Gagal cek subscription:', error)
       } finally {
